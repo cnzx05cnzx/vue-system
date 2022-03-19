@@ -25,8 +25,9 @@
 </template>
 
 <script>
-import {getcomment} from "@/network/admin"
-// import { getHomeMultidata } from "network/home"
+import {upform} from "@/network/admin"
+import {download} from "network/home"
+
 export default {
   name: 'index',
   data() {
@@ -60,18 +61,15 @@ export default {
           this.$message.success({message: '提交成功！请耐心等待!', duration: 1000});
           // console.log("success pass");
           setTimeout(() => {
-            getcomment(this.form.url,this.form.name).then(res => {
-              this.code = res.data.code;
-              // console.log(this.code);
-              if (this.code === '500') this.$message.error('链接格式错误！请重新提交');
-              else{
-                this.$message.success('评论爬取中');
-
-              }
-            })
+            upform(this.form.url, this.form.name)
+                .then(res => {
+                  if (res.byteLength === 25) {
+                    this.$message.error('链接格式错误或文件下载失败！请重试');
+                  } else {
+                    download(res, "spider_admin.csv")
+                  }
+                })
           }, 3000);
-
-
         }
       })
     }

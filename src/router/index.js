@@ -121,13 +121,6 @@ const routes = [
                 },
                 component: () => import ("../views/user/index")
             },{
-                path: "charts",
-                name: "pcharts",
-                meta: {
-                    title: '图表展示'
-                },
-                component: () => import ("../views/user/charts")
-            }, {
                 path: "info",
                 name: "pinfo",
                 meta: {

@@ -65,10 +65,6 @@ export default {
             {
               index: "index",
               title: "系统首页"
-            },
-            {
-              index: "charts",
-              title: "图标展示"
             }
           ]
         },
