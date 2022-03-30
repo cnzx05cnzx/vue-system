@@ -168,7 +168,7 @@ const routes = [
         },
         component: () => import (
             /* webpackChunkName: "login" */
-            "../views/Login.vue")
+            "../views/Login")
     },
     {
         path: "/register",
@@ -178,7 +178,7 @@ const routes = [
         },
         component: () => import (
             /* webpackChunkName: "login" */
-            "../views/register/reg"),
+            "../views/Register"),
     },
     {
         path: '/:pathMatch(.*)',

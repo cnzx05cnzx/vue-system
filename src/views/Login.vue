@@ -37,7 +37,7 @@
 </template>
 
 <script>
-
+// import {login} from "@/network/account"
 
 export default {
   data() {
@@ -54,10 +54,7 @@ export default {
         ],
         password: [
           {required: true, message: "请输入密码", trigger: "blur"}
-        ],
-        atype: [
-          {required: true, message: '请选择登陆身份', trigger: 'change'}
-        ],
+        ]
       }
     };
   },
@@ -70,15 +67,25 @@ export default {
       this.$refs.login.validate(valid => {
 
         if (valid) {
-          // login(this.param).then(res => {
-          //   console.log(res);
+          //实际应用
+          // login(this.param)
+          //     .then(res => {
+          //       if(res.result===true)
+          //       {
+          //         this.$message.success("登录成功");
+          //         localStorage.setItem("ms_username", this.param.username);
+          //         this.$router.push("/user");
+          //       }else{
+          //         this.$message.error("账号或密码错误");
+          //       }
+          //
           // })
+
+          //数据模拟
           this.$message.success("登录成功");
           localStorage.setItem("ms_username", this.param.username);
-
           this.$router.push("/user");
-          //   self.$router.push("/");
-          // }
+
 
         } else {
           this.$message.error("请输入账号和密码");

@@ -15,11 +15,11 @@ export const map1 = {
         // shape: 'circle',
         center: ['50%', '55%'],
         indicator: [
-            {name: '游戏', max: 5},
-            {name: '耗电', max: 5},
-            {name: '画质', max: 5},
-            {name: '性能', max: 5},
-            {name: '价格', max: 5},
+            {name: '音效', max: 5},
+            {name: '电池', max: 5},
+            {name: '系统', max: 5},
+            {name: '速度', max: 5},
+            {name: '屏幕', max: 5},
         ]
     },
     series: [
@@ -27,10 +27,10 @@ export const map1 = {
             name: 'Budget vs spending',
             type: 'radar',
             areaStyle: {},
-            color:['#FFAB76'],
+            color: ['#FFAB76'],
             data: [
                 {
-                    value: [4, 3, 4.3, 3.5, 4.5],
+                    value: [3.0, 3.0, 3.2, 3.4, 3.4],
                     name: '评测商品'
                 }
             ]
@@ -55,10 +55,10 @@ export const map2 = {
         // shape: 'circle',
         center: ['50%', '55%'],
         indicator: [
-            {name: '配置', max: 5},
-            {name: '像素', max: 5},
-            {name: '性能', max: 5},
-            {name: '价格', max: 5},
+            {name: '游戏', max: 5},
+            {name: '电池', max: 5},
+            {name: '屏幕', max: 5},
+            {name: '速度', max: 5},
         ]
     },
     series: [
@@ -73,11 +73,11 @@ export const map2 = {
             ],
             data: [
                 {
-                    value: [4.5, 3.2, 3.5, 2.7],
+                    value: [2.6, 3.0, 3.4, 3.4],
                     name: '评测商品'
                 },
                 {
-                    value: [5, 1.4, 2.7, 4.2],
+                    value: [2.5, 2.7, 2.4, 3.0],
                     name: '平均水准'
                 }
             ]
@@ -94,7 +94,7 @@ export const map3 = {
             show: true,
             autoPlay: true,
             playInterval: 3000,
-            data: ['游戏', '耗电', '性能', '价格', '画质']
+            data: ['音效', '电池', '系统', '速度', '屏幕']
         },
         grid: {containLabel: true},
         xAxis: [
