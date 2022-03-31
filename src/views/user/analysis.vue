@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div class="container" :style="{display:hidden.item1} ">
       <el-upload
           class="upload-demo"
@@ -22,26 +23,32 @@
     </div>
 
     <div :style="{visibility:hidden.item2}">
-      <el-row :gutter="10">
+
+      <el-row :gutter="10" justify="align" type="flex">
+        <div @click="writeMessageFun($event)">
+          <div id="light" class="white_content" ref="msk">
+            <br>
+            <img src="../../assets/img/cloud.png" alt="">
+          </div>
+          <div id="fade" class="black_overlay"></div>
+        </div>
+
         <el-col>
           <el-card shadow="hover" class="mgb20">
             <div class="user-info">
               <img :src="item.href" class="user-avator" alt/>
               <div class="user-info-cont">
                 <div class="user-info-name" style="font-size: 20px">{{ item.name }}</div>
-
+                <br>
+                <el-button type="primary" @click="showpic">显示词云</el-button>
               </div>
             </div>
           </el-card>
         </el-col>
 
-      </el-row>
-
-      <el-row :gutter="10" justify="align" type="flex">
         <el-col :span="45">
           <el-card shadow="hover" class="mgb20">
-            <!--          <v-chart class="chart" :option="option2" style="width: 550px;height:400px;"/>-->
-            <img src="../../assets/img/cloud.png" alt="" style="width: 550px;height:400px;">
+            <v-chart class="chart" :option="option4" style="width: 550px;height:400px;"/>
           </el-card>
         </el-col>
 
@@ -50,9 +57,7 @@
             <v-chart class="chart" :option="option2" style="width: 550px;height:400px;"/>
           </el-card>
         </el-col>
-      </el-row>
 
-      <el-row :gutter="10" justify="align" type="flex">
         <el-col :span="45">
           <el-card shadow="hover" class="mgb20">
             <v-chart class="chart" :option="option1" style="width: 550px;height:400px;"/>
@@ -78,28 +83,30 @@
 import "cropperjs/dist/cropper.css";
 import {use} from "echarts/core";
 import {CanvasRenderer} from "echarts/renderers";
-import {RadarChart, BarChart} from "echarts/charts";
+import {RadarChart, BarChart, HeatmapChart} from "echarts/charts";
 import {
   TitleComponent,
   TooltipComponent,
   LegendComponent,
   TimelineComponent,
   GridComponent,
-
+  VisualMapComponent
 } from "echarts/components";
 import VChart from "vue-echarts";
 import {ref} from "vue";
-import {map1, map2, map3} from "../../config/chart";
+import {map1, map2, map3, map4} from "../../config/chart";
 
 use([
   CanvasRenderer,
-  RadarChart,
   TitleComponent,
   TooltipComponent,
   LegendComponent,
   TimelineComponent,
   GridComponent,
-  BarChart
+  VisualMapComponent,
+  RadarChart,
+  BarChart,
+  HeatmapChart,
 ]);
 
 export default {
@@ -114,6 +121,8 @@ export default {
       imgSrc: "",
       hidden: {
         item1: "block",
+        // item1: "none",
+        // item2: "visible"
         item2: "hidden"
       },
 
@@ -141,12 +150,23 @@ export default {
     handleFail() {
       this.$message.error("文件上传出错");
     },
+    showpic() {
+      document.getElementById('light').style.display = 'block';
+      document.getElementById('fade').style.display = 'block';
+    },
+    writeMessageFun(ev) {
+      if (!this.$refs.msk.contains(ev.target)) {
+        document.getElementById('light').style.display = 'none';
+        document.getElementById('fade').style.display = 'none'
+      }
+    }
   },
   setup: () => {
     const option1 = ref(map1);
     const option2 = ref(map2);
     const option3 = ref(map3);
-    return {option1, option2, option3};
+    const option4 = ref(map4);
+    return {option1, option2, option3, option4};
   }
 
 };
@@ -155,7 +175,34 @@ export default {
 
 <style scoped>
 
+.black_overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1001;
+  -moz-opacity: 0.8;
+  opacity: .70;
+  filter: alpha(opacity=88);
+}
 
+.white_content {
+  text-align: center;
+  display: none;
+  position: absolute;
+  top: 5%;
+  left: 25%;
+  width: 500px;
+  height: 450px;
+  padding: 20px;
+  border: 10px solid orange;
+  background-color: white;
+  z-index: 1002;
+  overflow: auto;
+}
 
 .user-info {
   display: flex;
@@ -184,7 +231,6 @@ export default {
 }
 
 
-
 .user-info-list span {
   margin-left: 70px;
 }
@@ -192,7 +238,6 @@ export default {
 .mgb20 {
   margin-bottom: 20px;
 }
-
 
 
 </style>

@@ -114,6 +114,14 @@ const routes = [
         component: () => import ("../views/user/Home"),
         children: [
             {
+                path: "test",
+                name: "ptest",
+                meta: {
+                    title: '测试'
+                },
+                component: () => import ("../views/user/test")
+            },
+            {
                 path: "index",
                 name: "pindex",
                 meta: {

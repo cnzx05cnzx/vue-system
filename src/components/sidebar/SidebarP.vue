@@ -65,6 +65,9 @@ export default {
             {
               index: "index",
               title: "系统首页"
+            },{
+              index: "test",
+              title: "嵌入测试"
             }
           ]
         },
